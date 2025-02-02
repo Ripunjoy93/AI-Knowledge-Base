@@ -1,0 +1,14 @@
+version: '2.3'
+services:
+  lab:
+    image: c-ds-02-v2-task1:v0.1.10
+  nginx:
+    ports:
+    - 80:80
+    depends_on:
+    - lab
+  s3_data_loader:
+    volumes:
+    - $HOME/.aws/credentials:/root/.aws/credentials:ro
+    - ./data_sources:/var/data_sources
+    - ./task/data:/data

@@ -1,0 +1,16 @@
+# This docker-compose.yml is used for development. At is overwritten
+# in part in production with `docker-compose.production.yml`
+version: '2.3'
+
+services:
+
+  lab:
+    build: .
+    volumes:
+      - ./task/:/dli/task/
+      - ./task/data:/dli/task/data
+
+  nginx:
+    # This port is for development only.
+    ports:
+      - $DEV_NGINX_PORT:80

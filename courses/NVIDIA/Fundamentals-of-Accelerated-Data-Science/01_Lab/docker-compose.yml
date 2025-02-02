@@ -1,0 +1,71 @@
+# This docker-compose.yml is used for development. At is overwritten
+# in part in production with `docker-compose.production.yml`
+version: '2.3'
+
+volumes: 
+  model_repository: 
+
+services:
+  triton:
+    command: "tritonserver --model-repository=/models --exit-on-error=false --model-control-mode=poll --repository-poll-secs=30"
+    image: nvcr.io/nvidia/tritonserver:24.08-py3
+    runtime: nvidia
+    ipc: host
+    shm_size: "1g"
+    ulimits:
+      memlock: -1
+      stack: 67108864
+    ports:
+      - 8000:8000
+      - 8001:8001
+      - 8002:8002
+    volumes:
+      - model_repository:/models
+
+  lab:
+    runtime: nvidia
+    init: true
+
+    shm_size: '1g'
+    ulimits: 
+      memlock: -1
+      stack: 67108864
+
+    ports:
+      - 8787:8787
+      - 8786:8786
+
+    environment:
+      # Secure student access with a token.
+      # See entrypoint.sh for how this is used.
+      - JUPYTER_TOKEN
+
+    volumes:
+      # The s3_data_loader service will download data entities described in
+      # /task/data_sources to the shared volume `data` which is made available
+      # to students in `/dli/task/data` here via the shared `data` volume.
+      - ./task/data:/dli/task/data
+      # This allows NCCL to use shared memory for IPC, which it will do when
+      # NVLINK is unavailable.
+      - /dev/shm:/dev/shm
+      - model_repository:/dli/task/models
+
+  nginx:
+    image: nginx:1.15.12-alpine
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+
+  s3_data_loader:
+    # image: 224292665285.dkr.ecr.us-east-1.amazonaws.com/s3_data_loader:latest
+    image: nvdli/s3_data_loader:latest
+    volumes:
+      # Mount AWS credentials on the VM to give access to S3 buckets outside of
+      # AWS. On AWS, permissions are granted via role and this file may not exist.
+      - $HOME/.aws/credentials:/root/.aws/credentials:ro
+
+      # Mount `data_sources` into `/var/data_sources` so the container knows what to download.
+      - ./data_sources:/var/data_sources
+
+      # Mount the shared `./task/data` volume into `/data` where this container will download the data,
+      # and where the content container will be able to read it.
+      - ./task/data:/data
