@@ -1,0 +1,22 @@
+Code,Field
+A,"Agriculture, forestry & fishing"
+"B, D, E","Mining, energy and water supply"
+C,Manufacturing
+F,Construction
+G,"Wholesale, retail & repair of motor vehicles"
+H,Transport & storage
+I,Accommodation & food services
+J,Information & communication
+K,Financial & insurance activities
+L,Real estate activities
+M,"Professional, scientific & technical activities"
+N,Administrative & support services
+O,Public admin & defence; social security
+P,Education
+Q,Human health & social work activities
+"R, S, T",Other services
+U,Student
+V,Retired
+X,Outside the UK or not specified
+Y,Pre-school child
+Z,Not formally employed

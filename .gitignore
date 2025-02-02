@@ -27,9 +27,12 @@ share/python-wheels/
 MANIFEST
 .trunk/
 
-#Secret files
+#Secret files & Other big file
 **/secret_*.txt
 .DS_Store
+**/data/week1.csv
+**/data/week2.csv
+**/data/week3.csv
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
