@@ -25,10 +25,10 @@ AI-Knowledge-Base/
 
 ## 📌 Topics Covered  
 
-✅ Data Preprocessing & Feature Engineering
-✅ Mathematics & Statistics
-✅ Machine Learning (Supervised & Unsupervised)  
-✅ Deep Learning (CNNs, RNNs, Transformers)  
+✅ Data Preprocessing & Feature Engineering     
+✅ Mathematics & Statistics     
+✅ Machine Learning (Supervised & Unsupervised)   
+✅ Deep Learning (CNNs, RNNs, Transformers)     
 ✅ Natural Language Processing (NLP)    
 ✅ Generative AI & Agents  
 ✅ Computer Vision   
