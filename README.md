@@ -29,8 +29,8 @@ AI-Knowledge-Base/
 ✅ Mathematics & Statistics
 ✅ Machine Learning (Supervised & Unsupervised)  
 ✅ Deep Learning (CNNs, RNNs, Transformers)  
-✅ Natural Language Processing (NLP)
-✅ Natural Language Processing (NLP)  
+✅ Natural Language Processing (NLP)    
+✅ Generative AI & Agents  
 ✅ Computer Vision   
 ✅ Model Deployment & MLOps  
 ✅ Optimization Techniques  
